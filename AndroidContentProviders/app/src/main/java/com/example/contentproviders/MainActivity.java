@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
                                                       ContactsContract.Contacts.CONTACT_STATUS,
                                                       ContactsContract.Contacts.HAS_PHONE_NUMBER
     };
+    private String mSelectionCluse = ContactsContract.Contacts.DISPLAY_NAME_PRIMARY + "= 'Vinay'";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         ContentResolver contentResolver = getContentResolver();
         Cursor cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI,
                 mColumnProjection,
-                null,
+                mSelectionCluse,
                 null,
                 null);
         if (cursor != null && cursor.getCount() > 0) {

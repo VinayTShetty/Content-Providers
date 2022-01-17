@@ -1,0 +1,14 @@
+Typical SQL Statement.
+
+Select col1,col2
+from table
+where col1=value
+order by col2,col3
+  ContentResolver contentResolver = getContentResolver();
+        Cursor cursor = contentResolver.query(
+                ContactsContract.Contacts.CONTENT_URI,      //This is constant and is defined under android.provider package
+                mColumnProjection,   //number of colmns that we want to querey from the database,It will be basically a String array representation the number of columns.
+                null, //selection clause will be similar to where clause (ex: where col1="Anil")
+                null, //To provide values at the run time for where clause(usually its represented by the ? i.e null)
+                null  //Is the sort order where we want the data to be sorted.
+                );

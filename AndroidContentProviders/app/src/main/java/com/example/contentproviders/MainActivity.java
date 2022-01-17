@@ -17,7 +17,10 @@ public class MainActivity extends AppCompatActivity {
                                                       ContactsContract.Contacts.CONTACT_STATUS,
                                                       ContactsContract.Contacts.HAS_PHONE_NUMBER
     };
-    private String mSelectionCluse = ContactsContract.Contacts.DISPLAY_NAME_PRIMARY + "= 'Vinay'";
+    private String mSelectionCluse = ContactsContract.Contacts.DISPLAY_NAME_PRIMARY + "= ?";
+
+    private String[] mSelectionArguments = new String[]{"Demo"};
+    private String mOrderBy = ContactsContract.Contacts.DISPLAY_NAME_PRIMARY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
         ContentResolver contentResolver = getContentResolver();
         Cursor cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI,
                 mColumnProjection,
-                mSelectionCluse,
                 null,
-                null);
+                null,
+                mOrderBy);
         if (cursor != null && cursor.getCount() > 0) {
             StringBuilder stringBuilderQueryResult = new StringBuilder("");
             while (cursor.moveToNext()) {
